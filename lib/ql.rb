@@ -1,20 +1,20 @@
-require_relative "base"
+require_relative 'base'
 
 module OverpassAPI
   class QL < Base
-    def initialize(args={})
+    def initialize(args = {})
       super
 
       @maxsize = args[:maxsize]
     end
 
     def build_query(q)
-      header = ""
+      header = ''
       header << "[bbox:#{@bbox}]" if @bbox
       header << "[timeout:#{@timeout}]" if @timeout
       header << "[maxsize:#{@maxsize}]" if @maxsize
 
-      header << "[out:json]"
+      header << '[out:json]'
 
       "#{header};#{q}"
     end

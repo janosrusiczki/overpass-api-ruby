@@ -2,7 +2,7 @@ require_relative 'base'
 
 module OverpassAPI
   class XML < Base
-    def initialize(args={})
+    def initialize(args = {})
       super
 
       @element_limit = args[:element_limit]

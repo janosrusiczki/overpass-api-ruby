@@ -3,11 +3,11 @@ require 'json'
 
 module OverpassAPI
   class Base
-    DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter'
+    DEFAULT_ENDPOINT = 'http://overpass-api.de/api/interpreter'.freeze
 
-    def initialize(args={})
+    def initialize(args = {})
       bbox = args[:bbox]
-      bounding_box(bbox[:s],bbox[:n],bbox[:w],bbox[:e]) if bbox
+      bounding_box(bbox[:s], bbox[:n], bbox[:w], bbox[:e]) if bbox
 
       @endpoint = args[:endpoint] || DEFAULT_ENDPOINT
       @timeout = args[:timeout]
