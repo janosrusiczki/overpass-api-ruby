@@ -10,7 +10,8 @@ describe OverpassAPI::XML do
 
     overpass = OverpassAPI::XML.new(options)
 
-    ba_query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>" \
+    ba_query = "<union><query type='relation'>" \
+               "<has-kv k='route' v='subway'/></query>" \
                "</union><union><item/><recurse type='down'/></union>"
 
     expect(overpass.query(ba_query)[:elements]).to be_a(Array)

@@ -17,7 +17,8 @@ describe OverpassAPI::QL do
     overpass = OverpassAPI::QL.new(opts)
     built_query = overpass.build_query('a query')
 
-    expected_built_query = '[bbox:1,3,2,4][timeout:1000][maxsize:333][out:json];a query'
+    expected_built_query = '[bbox:1,3,2,4][timeout:1000]' \
+                           '[maxsize:333][out:json];a query'
     expect(built_query).to eq expected_built_query
   end
 end

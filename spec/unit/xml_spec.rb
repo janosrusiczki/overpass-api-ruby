@@ -6,7 +6,8 @@ describe OverpassAPI::XML do
     overpass = OverpassAPI::XML.new
     built_query = overpass.build_query('a query')
 
-    expect(built_query).to eq "<osm-script    output='json'>a query<print/></osm-script>"
+    expect(built_query).to eq "<osm-script output='json'>a query" \
+                              '<print/></osm-script>'
   end
 
   it 'should set the right opts' do
@@ -17,7 +18,8 @@ describe OverpassAPI::XML do
     overpass = OverpassAPI::XML.new(opts)
     built_query = overpass.build_query('a query')
 
-    expected_built_query = "<osm-script bbox='1,3,2,4' timeout='1000' element-limit='333' output='json'>" \
+    expected_built_query = "<osm-script bbox='1,3,2,4' timeout='1000' " \
+                           "element-limit='333' output='json'>" \
                            'a query<print/></osm-script>'
     expect(built_query).to eq expected_built_query
   end

@@ -2,11 +2,14 @@ require 'spec_helper'
 require 'overpass_api_ruby'
 require 'httpi'
 
+# rubocop:disable Metrics/BlockLength
 describe OverpassAPI::Base do
   it 'should return the default endpoint' do
     expect(OverpassAPI::Base::DEFAULT_ENDPOINT).to eq 'http://overpass-api.de/api/interpreter'
     base = OverpassAPI::Base.new
-    expect(base.instance_variable_get('@endpoint')).to eq OverpassAPI::Base::DEFAULT_ENDPOINT
+    expect(
+      base.instance_variable_get('@endpoint')
+    ).to eq OverpassAPI::Base::DEFAULT_ENDPOINT
   end
 
   it 'should set the right args' do
@@ -68,12 +71,22 @@ describe OverpassAPI::Base do
     body = { key: 'value' }
 
     allow(HTTPI::Request).to receive(:new).and_return(request)
-    expect(HTTPI::Request).to receive(:new).with(url: OverpassAPI::Base::DEFAULT_ENDPOINT, body: query)
+    expect(
+      HTTPI::Request
+    ).to receive(:new).with(
+      url: OverpassAPI::Base::DEFAULT_ENDPOINT,
+      body: query
+    )
 
-    allow(HTTPI).to receive(:post).and_return(OpenStruct.new(body: body.to_json))
+    allow(
+      HTTPI
+    ).to receive(:post).and_return(
+      OpenStruct.new(body: body.to_json)
+    )
     expect(HTTPI).to receive(:post).with(request)
 
     response = base.raw_query(query)
     expect(response).to eq body
   end
 end
+# rubocop:enable Metrics/BlockLength
